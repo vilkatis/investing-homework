@@ -1,6 +1,33 @@
 version: '3'
 
 services:
+  reverse_proxy:
+    image: nginx
+    tty: true
+    user: ${UID?err}:${GID?err}
+    ports:
+      - 8080:80
+    depends_on:
+      - client
+      - server
+    volumes:
+      - ./reverse_proxy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  client:
+    image: vilkatis/angular
+    container_name: ${CLIENT_HOST}
+    user: ${UID?err}:${GID?err}
+    tty: true
+    volumes:
+      - ./client:/app
+    depends_on:
+      - server
+    ports:
+      - ${CLIENT_PORT}:${CLIENT_PORT}
+    environment:
+      SERVER_HOST: ${SERVER_HOST}
+      SERVER_PORT: ${SERVER_PORT}
+
   server:
     image: vilkatis/ts-node
     container_name: ${SERVER_HOST}

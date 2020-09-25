@@ -29,6 +29,9 @@ INSERT INTO user(userId) VALUE (1);
 CREATE TABLE watchlist(
 userId INTEGER NOT NULL,
 instrumentId INTEGER NOT NULL,
-FOREIGN KEY (userId) REFERENCES user(userId),
-FOREIGN KEY (instrumentId) REFERENCES instrument(instrumentId)
+PRIMARY KEY (userId, instrumentId),
+FOREIGN KEY (userId)
+REFERENCES user (userId),
+FOREIGN KEY (instrumentId)
+REFERENCES instrument (instrumentId)
 );
