@@ -14,7 +14,7 @@
         <input type="text" id="type">
       </div>
     </div>
-    <ng-container *ngFor="let watchlistItem of watchlist">
+    <ng-container *ngFor="let watchlistItem of watchlist | searchFilter : {symbol: 'CAD', name: 'Euro Can'}">
       <div class="table-row">
         <div class="table-cell justify-center sticky-left">{{ watchlistItem.symbol }}</div>
         <div class="table-cell">{{watchlistItem.name }}</div>

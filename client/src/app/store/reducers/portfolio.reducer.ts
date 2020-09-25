@@ -12,7 +12,7 @@ export interface State {
 const initialState: State = {
   entities: {
   },
-  watchlist: []
+  watchlist: [1, 6, 9, 10, 15, 16, 52, 175, 1487, 1525, 2124, 15978, 956731, 976573, 997393, 998227]
 };
 
 export const reducer = createReducer(

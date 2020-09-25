@@ -9,11 +9,13 @@ import { EFFECTS } from './store/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { COMPONENTS } from './components';
+import { PIPES } from './pipes';
 
 const metaReducers: MetaReducer<IRootState>[] = [];
 
 @NgModule({
   declarations: [
+    ...PIPES,
     ...COMPONENTS,
     AppComponent
   ],
