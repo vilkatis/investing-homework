@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class PortfolioEffects {
-  public getGuilds$ = createEffect(() =>
+  public getInstruments$ = createEffect(() =>
     this._actions$.pipe(
       ofType(PortfolioActions.getInstrumentsRequest),
       switchMap(() =>
@@ -20,6 +20,20 @@ export class PortfolioEffects {
             return PortfolioActions.getInstrumentsSuccess({ instruments })
           }),
           catchError(err => of(PortfolioActions.getInstrumentsFailure()))
+        )
+      )
+    )
+  );
+
+  public getWatchlist$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(PortfolioActions.getWatchlistRequest),
+      switchMap(() =>
+        this._apiService.getWatchlist().pipe(
+          map(watchlist => {
+            return PortfolioActions.getWatchlistSuccess({ watchlist })
+          }),
+          catchError(err => of(PortfolioActions.getWatchlistFailure()))
         )
       )
     )

@@ -3,6 +3,13 @@
   flex-direction: column;
   flex-grow: 1;
 }
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+}
+
 .table-wrapper {
   display: flex;
   flex: 1 0 0;
@@ -15,9 +22,10 @@
   display: grid;
   grid-auto-rows: 50px;
   grid-template-rows: 75px;
-  grid-template-columns: [symbol] 100px [name] minmax(max-content, 1fr) [type] 100px [action] minmax(min-content, 100px);
+  grid-template-columns: [symbol] 100px [name] minmax(min-content, 1fr) [type] 100px [action] minmax(min-content, 100px);
 }
 
+button,
 .button {
   padding: 5px;
   background: #243b55;
@@ -26,6 +34,15 @@
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
+  outline: none;
+  border: none;
+  &:disabled,
+  &.disabled {
+    background: #ccc;
+    color: #333;
+    cursor: default;
+    pointer-events: none;
+  }
 }
 
 .table-header,
@@ -66,7 +83,7 @@
   z-index: 4;
 }
 
-input {
+select, input {
   width: 100%;
   padding: 5px;
   box-sizing: border-box;

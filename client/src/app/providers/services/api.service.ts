@@ -10,4 +10,8 @@ export class ApiService {
   getInstruments(): Observable<IInstrument[]> {
     return this._http.get<IInstrument[]>('/api/v1/instruments');
   }
+
+  getWatchlist(): Observable<number[]> {
+    return this._http.get<number[]>('/api/v1/users/1/watchlist');
+  }
 }

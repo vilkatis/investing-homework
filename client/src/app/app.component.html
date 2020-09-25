@@ -1,1 +1,1 @@
-<app-portfolio [watchlist]="watchlist$ | async"></app-portfolio>
+<app-portfolio [watchlist]="watchlist$ | async" [instruments]="instruments$ | async" (fireEvent)="catchEvent($event)"></app-portfolio>

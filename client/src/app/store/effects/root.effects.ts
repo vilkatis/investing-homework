@@ -7,18 +7,14 @@ import { PortfolioActions } from '../actions';
 
 @Injectable()
 export class RootEffects {
-  @Effect()
   public init$: Observable<Action> = createEffect(() => this.actions$
     .pipe(
       ofType(ROOT_EFFECTS_INIT),
       switchMap(() => {
-        return of(PortfolioActions.getInstrumentsRequest())
+        return [PortfolioActions.getInstrumentsRequest(), PortfolioActions.getWatchlistRequest()]
       })
     )
   );
 
-  public constructor(
-    private actions$: Actions
-  ) {
-  }
+  public constructor(private actions$: Actions) {}
 }

@@ -1,6 +1,10 @@
-<div class="actions">
-  <div class="add">Add</div>
-</div>
+<form class="actions" [formGroup]="addForm" (ngSubmit)="onAddFormSubmit()">
+  <select name="instruments" id="instruments" formControlName="instrumentId">
+    <option *ngIf="!instruments.length" disabled>All instruments added</option>
+    <option value="{{instrument.instrumentId}}" *ngFor="let instrument of instruments">{{instrument.symbol}}</option>
+  </select>
+  <button type="submit" [disabled]="!instruments.length || !addForm.valid">Add</button>
+</form>
 <div class="table-wrapper">
   <div class="table">
     <div class="table-header" [formGroup]="filterForm">
@@ -21,13 +25,11 @@
         <div class="button" (click)="resetFilter()">Reset</div>
       </div>
     </div>
-    <ng-container *ngFor="let watchlistItem of watchlist | searchFilter : filterValues">
-      <div class="table-row">
-        <div class="table-cell justify-center sticky-left">{{ watchlistItem.symbol }}</div>
-        <div class="table-cell">{{watchlistItem.name }}</div>
-        <div class="table-cell">{{watchlistItem.instrumentType }}</div>
-        <div class="table-cell align-center" (click)="removeFromWatchlist(watchlistItem.instrumentId)"><div class="button">Remove</div></div>
-      </div>
-    </ng-container>
+    <div class="table-row" *ngFor="let watchlistItem of watchlist | searchFilter : filterValues">
+      <div class="table-cell justify-center sticky-left">{{ watchlistItem.symbol }}</div>
+      <div class="table-cell">{{watchlistItem.name }}</div>
+      <div class="table-cell">{{watchlistItem.instrumentType }}</div>
+      <div class="table-cell align-center" (click)="removeFromWatchlist(watchlistItem.instrumentId)"><div class="button">Remove</div></div>
+    </div>
   </div>
 </div>
