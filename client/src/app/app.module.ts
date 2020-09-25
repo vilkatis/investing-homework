@@ -10,6 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { COMPONENTS } from './components';
 import { PIPES } from './pipes';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const metaReducers: MetaReducer<IRootState>[] = [];
 
@@ -22,6 +23,8 @@ const metaReducers: MetaReducer<IRootState>[] = [];
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(REDUCERS, {
       metaReducers,
       runtimeChecks: {

@@ -8,13 +8,24 @@
   flex: 1 0 0;
   flex-direction: column;
   overflow: auto;
+  background: #CCC;
 }
 
 .table {
   display: grid;
   grid-auto-rows: 50px;
   grid-template-rows: 75px;
-  grid-template-columns: [symbol] 100px [name] minmax(max-content, 1fr) [type] 100px;
+  grid-template-columns: [symbol] 100px [name] minmax(max-content, 1fr) [type] 100px [action] minmax(min-content, 100px);
+}
+
+.button {
+  padding: 5px;
+  background: #243b55;
+  color: #FFF;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
 }
 
 .table-header,
@@ -31,6 +42,14 @@
   overflow: hidden;
   box-sizing: border-box;
   justify-content: center;
+}
+
+.table-cell span {
+  margin-bottom: 7px;
+}
+
+.align-center {
+  align-items: center;
 }
 
 .table-header .table-cell {

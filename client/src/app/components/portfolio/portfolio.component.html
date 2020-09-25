@@ -1,24 +1,32 @@
+<div class="actions">
+  <div class="add">Add</div>
+</div>
 <div class="table-wrapper">
   <div class="table">
-    <div class=" table-header">
+    <div class="table-header" [formGroup]="filterForm">
       <div class="table-cell">
         <span>symbol</span>
-        <input type="text" id="id">
+        <input type="text" id="symbol" formControlName="symbol">
       </div>
       <div class="table-cell">
         <span>name</span>
-        <input type="text" id="name">
+        <input type="text" id="name" formControlName="name">
       </div>
       <div class="table-cell">
         <span>type</span>
-        <input type="text" id="type">
+        <input type="text" id="instrumentType" formControlName="instrumentType">
+      </div>
+      <div class="table-cell align-center">
+        <span>action</span>
+        <div class="button" (click)="resetFilter()">Reset</div>
       </div>
     </div>
-    <ng-container *ngFor="let watchlistItem of watchlist | searchFilter : {symbol: 'CAD', name: 'Euro Can'}">
+    <ng-container *ngFor="let watchlistItem of watchlist | searchFilter : filterValues">
       <div class="table-row">
         <div class="table-cell justify-center sticky-left">{{ watchlistItem.symbol }}</div>
         <div class="table-cell">{{watchlistItem.name }}</div>
         <div class="table-cell">{{watchlistItem.instrumentType }}</div>
+        <div class="table-cell align-center" (click)="removeFromWatchlist(watchlistItem.instrumentId)"><div class="button">Remove</div></div>
       </div>
     </ng-container>
   </div>
