@@ -1,6 +1,6 @@
 import { Container, Service } from 'typedi';
-import { IInstrument } from '../models/interfaces';
 import { MySQLService } from './mysql.service';
+import { IInstrument } from '../../../shared';
 
 @Service()
 export class InstrumentsService {

@@ -20,6 +20,7 @@ services:
     tty: true
     volumes:
       - ./client:/app
+      - ./shared:/shared
     depends_on:
       - server
     ports:
@@ -35,6 +36,7 @@ services:
     tty: true
     volumes:
       - ./server:/app
+      - ./shared:/shared
     depends_on:
       - mysql
     ports:

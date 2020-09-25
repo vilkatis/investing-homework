@@ -1,0 +1,25 @@
+<div class="table-wrapper">
+  <div class="table">
+    <div class=" table-header">
+      <div class="table-cell">
+        <span>symbol</span>
+        <input type="text" id="id">
+      </div>
+      <div class="table-cell">
+        <span>name</span>
+        <input type="text" id="name">
+      </div>
+      <div class="table-cell">
+        <span>type</span>
+        <input type="text" id="type">
+      </div>
+    </div>
+    <ng-container *ngFor="let watchlistItem of watchlist">
+      <div class="table-row">
+        <div class="table-cell justify-center sticky-left">{{ watchlistItem.symbol }}</div>
+        <div class="table-cell">{{watchlistItem.name }}</div>
+        <div class="table-cell">{{watchlistItem.instrumentType }}</div>
+      </div>
+    </ng-container>
+  </div>
+</div>

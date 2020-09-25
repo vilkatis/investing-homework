@@ -1,0 +1,60 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.table-wrapper {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.table {
+  display: grid;
+  grid-auto-rows: 50px;
+  grid-template-rows: 75px;
+  grid-template-columns: [symbol] 100px [name] minmax(max-content, 1fr) [type] 100px;
+}
+
+.table-header,
+.table-row {
+  display: contents;
+}
+
+.table-cell {
+  background: #FFF;
+  padding: 5px;
+  margin: 1px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.table-header .table-cell {
+  background: rgba(0,0,0,0.85);
+  color: #FFF;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.sticky-left {
+  position: sticky;
+  left: 0;
+  z-index: 4;
+}
+
+input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid #444;
+}
+
+input:focus {
+  border: 1px solid green;
+}
