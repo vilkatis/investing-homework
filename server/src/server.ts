@@ -2,6 +2,7 @@ import { createExpressServer } from 'routing-controllers';
 import { Express } from 'express';
 import { ConfigService } from './services';
 import { Container } from 'typedi';
+import { controllers } from './controllers';
 
 export class Server {
   private _configService: ConfigService;
@@ -10,7 +11,9 @@ export class Server {
   constructor() {
     this._configService = Container.get(ConfigService);
     this._app = createExpressServer({
-      routePrefix: '/v1'
+      routePrefix: '/v1',
+      validation: true,
+      controllers
     });
   }
 
