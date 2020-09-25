@@ -30,10 +30,38 @@ export class PortfolioEffects {
       ofType(PortfolioActions.getWatchlistRequest),
       switchMap(() =>
         this._apiService.getWatchlist().pipe(
-          map(watchlist => {
-            return PortfolioActions.getWatchlistSuccess({ watchlist })
+          map(response => {
+            return PortfolioActions.getWatchlistSuccess({ watchlist: response.map(({instrumentId}) => instrumentId)});
           }),
           catchError(err => of(PortfolioActions.getWatchlistFailure()))
+        )
+      )
+    )
+  );
+
+  public addInstrument$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(PortfolioActions.addInstrumentRequest),
+      switchMap((request) =>
+        this._apiService.addInstrument(request).pipe(
+          map(() => {
+            return PortfolioActions.addInstrumentSuccess(request )
+          }),
+          catchError(err => of(PortfolioActions.addInstrumentFailure()))
+        )
+      )
+    )
+  );
+
+  public removeInstrument$ = createEffect(() =>
+    this._actions$.pipe(
+      ofType(PortfolioActions.removeInstrumentRequest),
+      switchMap((request) =>
+        this._apiService.removeInstrument(request).pipe(
+          map(() => {
+            return PortfolioActions.removeInstrumentSuccess(request )
+          }),
+          catchError(err => of(PortfolioActions.removeInstrumentFailure()))
         )
       )
     )

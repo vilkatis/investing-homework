@@ -17,10 +17,10 @@ services:
     image: vilkatis/angular
     container_name: ${CLIENT_HOST}
     user: ${UID?err}:${GID?err}
+    entrypoint: /app/entrypoint.sh
     tty: true
     volumes:
       - ./client:/app
-      - ./shared:/shared
     depends_on:
       - server
     ports:
@@ -33,10 +33,10 @@ services:
     image: vilkatis/ts-node
     container_name: ${SERVER_HOST}
     user: ${UID?err}:${GID?err}
+    entrypoint: /app/entrypoint.sh
     tty: true
     volumes:
       - ./server:/app
-      - ./shared:/shared
     depends_on:
       - mysql
     ports:

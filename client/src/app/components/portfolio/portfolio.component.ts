@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IInstrument } from '../../../../../shared';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { IEvent } from '../../models';
+import { IEvent, IInstrument } from '../../models';
 
 @Component({
   selector: 'app-portfolio',
@@ -37,7 +36,13 @@ export class PortfolioComponent implements OnInit {
   }
 
   public removeFromWatchlist(instrumentId: number) {
-
+    this.fireEvent.emit({
+      type: 'instrument',
+      action: {
+        type: 'removeInstrument',
+        payload: instrumentId
+      }
+    });
   }
 
   public resetFilter() {
@@ -49,8 +54,9 @@ export class PortfolioComponent implements OnInit {
       type: 'instrument',
       action: {
         type: 'addInstrument',
-        payload: this.addForm.value
+        payload: parseInt(this.addForm.value['instrumentId'])
       }
     });
+    this.addForm.reset();
   }
 }

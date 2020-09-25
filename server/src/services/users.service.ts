@@ -1,5 +1,6 @@
 import { Container, Service } from 'typedi';
 import { MySQLService } from './mysql.service';
+import { IWatchlistItem } from '../models';
 
 @Service()
 export class UsersService {
@@ -8,7 +9,7 @@ export class UsersService {
     this._mysqlService = Container.get(MySQLService);
   }
 
-  public async getWatchlist(userId: number): Promise<number[]> {
+  public async getWatchlist(userId: number): Promise<IWatchlistItem[]> {
     return this._mysqlService.query(`SELECT instrumentId FROM watchlist WHERE userId = ${userId}`);
   }
 

@@ -6,11 +6,11 @@ interface Actions {
 interface InstrumentActions {
   addInstrument: {
     type: 'addInstrument';
-    payload: { instrumentId: number };
+    payload: number;
   };
   removeInstrument: {
     type: 'removeInstrument';
-    payload: { instrumentId: number };
+    payload: number;
   };
 }
 

@@ -1,8 +1,8 @@
-import { Body, Delete, Get, JsonController, Post } from 'routing-controllers';
+import { Body, Delete, Get, JsonController, Params, Post } from 'routing-controllers';
 import { UsersService } from '../services';
 import { Container } from 'typedi';
 import { AddToWatchlistRequest, RemoveFromWatchlistRequest } from '../validation';
-
+import { IWatchlistItem } from '../models';
 
 @JsonController('/users')
 export class UsersController {
@@ -13,7 +13,7 @@ export class UsersController {
   }
 
   @Get('/:id/watchlist')
-  public getUserWatchlist(): Promise<number[]> {
+  public getUserWatchlist(): Promise<IWatchlistItem[]> {
     return this._usersService.getWatchlist(1);
   }
 
@@ -22,8 +22,8 @@ export class UsersController {
     return this._usersService.addToWatchlist(1, request.instrumentId);
   }
 
-  @Delete('/:id/watchlist')
-  public async removeFromWatchlist(@Body() request: RemoveFromWatchlistRequest): Promise<unknown> {
-    return this._usersService.removeFromWatchlist(1, request.instrumentId);
+  @Delete('/:id/watchlist/:instrumentId')
+  public async removeFromWatchlist(@Params({}) { instrumentId }: RemoveFromWatchlistRequest): Promise<unknown> {
+    return this._usersService.removeFromWatchlist(1, instrumentId);
   }
 }

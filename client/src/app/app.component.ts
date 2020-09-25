@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IInstrument } from '../../../shared/models/interfaces';
 import { select, Store } from '@ngrx/store';
 import { selectInstrumentsNotInWatchlist, selectWatchlistArray } from './store/selectors';
 import { IRootState } from './store/reducers';
-import { IEvent } from './models';
+import { IEvent, IInstrument } from './models';
 import { PortfolioActions } from './store/actions';
 
 @Component({
@@ -26,10 +25,10 @@ export class AppComponent {
       case 'instrument':
         switch (event.action.type) {
           case 'addInstrument':
-            this._store.dispatch(PortfolioActions.addInstrumentRequest(event.action.payload));
+            this._store.dispatch(PortfolioActions.addInstrumentRequest({instrumentId: event.action.payload}));
             break;
           case 'removeInstrument':
-            this._store.dispatch(PortfolioActions.removeInstrumentRequest(event.action.payload));
+            this._store.dispatch(PortfolioActions.removeInstrumentRequest({instrumentId: event.action.payload}));
             break;
         }
         break;

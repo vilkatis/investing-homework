@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IInstrument } from '../../../../../shared';
+import { IInstrument, IWatchlistItem } from '../../models';
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
@@ -11,7 +11,15 @@ export class ApiService {
     return this._http.get<IInstrument[]>('/api/v1/instruments');
   }
 
-  getWatchlist(): Observable<number[]> {
-    return this._http.get<number[]>('/api/v1/users/1/watchlist');
+  getWatchlist(): Observable<IWatchlistItem[]> {
+    return this._http.get<IWatchlistItem[]>('/api/v1/users/1/watchlist');
+  }
+
+  addInstrument(request: IWatchlistItem) {
+    return this._http.post('/api/v1/users/1/watchlist', request);
+  }
+
+  removeInstrument(request: IWatchlistItem) {
+    return this._http.delete(`/api/v1/users/1/watchlist/${request.instrumentId}`);
   }
 }

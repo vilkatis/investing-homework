@@ -1,7 +1,7 @@
 import { Get, JsonController } from 'routing-controllers';
 import { InstrumentsService } from '../services';
 import { Container } from 'typedi';
-import { IInstrument } from '../../../shared';
+import { IInstrument } from '../models';
 
 @JsonController('/instruments')
 export class InstrumentsController {

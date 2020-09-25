@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { IInstrument } from '../../../../../shared';
 import { PortfolioActions } from '../actions';
+import { IInstrument } from '../../models';
 
 export const name = 'portfolio';
 
@@ -23,5 +23,13 @@ export const reducer = createReducer(
   on(PortfolioActions.getWatchlistSuccess, (state, { watchlist }) => ({
     ...state,
     watchlist,
+  })),
+  on(PortfolioActions.addInstrumentSuccess, (state, { instrumentId }) => ({
+    ...state,
+    watchlist: [...state.watchlist, instrumentId],
+  })),
+  on(PortfolioActions.removeInstrumentSuccess, (state, { instrumentId }) => ({
+    ...state,
+    watchlist: state.watchlist.filter(id => id !== instrumentId),
   }))
 );
