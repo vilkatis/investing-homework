@@ -1,14 +1,33 @@
 version: '3'
 
 services:
+  server:
+    image: vilkatis/ts-node
+    container_name: ${SERVER_HOST}
+    user: ${UID?err}:${GID?err}
+    tty: true
+    volumes:
+      - ./server:/app
+    depends_on:
+      - mysql
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+
   mysql:
     image: mysql
+    container_name: ${DB_HOST}
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     ports:
-      - 3306:3306
+      - ${DB_PORT}:3306
     volumes:
-    - ./database/mysql:/docker-entrypoint-initdb.d
+      - ./database/mysql:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
       MYSQL_DATABASE: ${DB_NAME}
