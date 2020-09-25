@@ -5,6 +5,7 @@ import { ErrorHandlerService } from './error-handler.service';
 
 @Service()
 export class ConfigService {
+  public serverPort: number;
   public dbHost: string;
   public dbPort: number;
   public dbUser: string;
@@ -16,6 +17,7 @@ export class ConfigService {
     const env = Container.get(ENV);
     try {
       console.log('Initializing config');
+      this.serverPort = env.get(EnvVar.SERVER_PORT).required().asPortNumber();
       this.dbHost = env.get(EnvVar.DB_HOST).required().asString();
       this.dbPort = env.get(EnvVar.DB_PORT).required().asPortNumber();
       this.dbUser = env.get(EnvVar.DB_USER).required().asString();

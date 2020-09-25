@@ -1,4 +1,5 @@
 export const EnvVar = <const>{
+  SERVER_PORT: 'SERVER_PORT',
   DB_HOST: 'DB_HOST',
   DB_PORT: 'DB_PORT',
   DB_USER: 'DB_USER',
